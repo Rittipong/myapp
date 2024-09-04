@@ -1,0 +1,68 @@
+{% load compress %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content=
+		"width=device-width, initial-scale=1.0">
+	<title>Solutions</title>
+
+	{% compress css %}
+	<link rel="stylesheet"
+		href="{% static 'src/output.css' %}">
+	{% endcompress %}
+
+</head>
+
+<body class="bg-slate-700">
+	<div class="container mx-auto mt-4">
+		{% block content %}
+		{% endblock content %}
+	</div>
+</body>
+<style>
+#solutions-button {
+  font-size: 1.25rem; /* ปรับขนาดตัวอักษร */
+  padding: 0.5rem 1rem; /* ปรับ padding เพื่อเพิ่มขนาดของปุ่ม */
+}
+
+#solutions-menu {
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px); /* ยังคงจัดให้อยู่ตรงกลาง */
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#solutions-menu.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0); /* อนิเมชันเลื่อนลง */
+}
+  </style>
+  
+  <script>
+	function toggleMenu() {
+	  const menu = document.getElementById('solutions-menu');
+	  const button = document.getElementById('solutions-button');
+	  const isExpanded = button.getAttribute('aria-expanded') === 'true';
+  
+	  button.setAttribute('aria-expanded', !isExpanded);
+  
+	  if (isExpanded) {
+		menu.classList.remove('show');
+		setTimeout(() => {
+		  menu.classList.add('hidden');
+		}, 300); // รอให้อนิเมชันเสร็จก่อนที่จะซ่อน dropdown
+	  } else {
+		menu.classList.remove('hidden');
+		setTimeout(() => {
+		  menu.classList.add('show');
+		}, 0); // เพิ่มคลาส `.show` เพื่อแสดง dropdown ทันทีหลังจากที่ซ่อนถูกลบ
+	  }
+	}
+  </script>
+
+</html>
