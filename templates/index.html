@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
@@ -217,4 +218,67 @@
       </a>
   </nav>
 </div>
+
+<div class="mt-6 items-center">
+  <h1 id="head" class="text-4xl ">สวัสดีชาวโลก</h1>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-2" onclick="document.getElementById('head').style.color='red'" >Click Me</button>
+</div>
+
+<div id="currentDateTime" class="mt-4 text-2xl">
+  <script>UpdateTime();</script>
+</div>
+
+<div class="mt-6 flex space-x-4 items-center">
+  <button class="bg-transparent hover:bg-blue-500 text-blue-700 
+  hover:text-white py-2 px-6 border border-blue-500
+  rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+  onclick="document.getElementById('myImage').src='{% static 'images/Idle.png' %}'">แมวยืน</button>
+  
+  <img id="myImage" src="{% static 'images/Idle.png' %}" width="200px">
+
+  <button class="bg-transparent hover:bg-green-500 text-green-700 
+  hover:text-white py-2 px-6 border border-green-500
+  rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+  onclick="document.getElementById('myImage').src='{% static 'images/Slide.png' %}'">แมวสไลด์</button>
+</div>
+
+
+<div class="mt-4">
+  <button onclick="DisplayTable('visible')">แสดงตาราง</button>
+  <button onclick="DisplayTable('hidden')">ซ่อนตาราง</button>
+
+  <table id="myTable" class="table-auto">
+    <caption>ตารางสินค้า</caption>
+      <tr>
+        <th>รายการที่1</th>
+        <th>รายการที่2</th>
+        <th>รายการที่3</th>
+      </tr>
+      <tr>
+        <th>354</th>
+        <th>657</th>
+        <th>318</th>
+      </tr>
+      <tr>
+        <th>999</th>
+        <th>777</th>
+        <th>888</th>
+      </tr>
+  </table>
+</div>
+
+<div class="mt-4">
+  <label for="num1">Number #1</label>
+  <input class="ml-2 border-2 border-slate-900" type="number" id="num1"><br />
+
+  <label for="num2">Number #2</label>
+  <input class="ml-2 border-2 border-slate-900" type="number" id="num2"><br />
+
+  <label for="num3">Number #3</label>
+  <input class="ml-2 border-2 border-slate-900" type="number" id="num3"><br />
+
+  <button class="ml-2 border-slate-900 mt-2 bg-gray-300 px-2 py-1" onclick="calAverage()">Submit</button>
+</div>
+
+<div class="mt-2 text-2xl" id="result"></div>
 {% endblock content %}
